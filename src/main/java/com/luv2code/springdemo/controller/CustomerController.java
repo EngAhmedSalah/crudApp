@@ -7,10 +7,7 @@ import com.luv2code.springdemo.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import com.luv2code.springdemo.dao.CustomerDAO;
 import com.luv2code.springdemo.entity.Customer;
@@ -54,5 +51,17 @@ public class CustomerController
     {
         customerService.deleteCustomer(customer);
         return "redirect:/customer/list";
+    }
+    @GetMapping("/showFormForUpdate")
+    public String showFormForUpdate(@RequestParam("customerID") int id ,  Model model)
+    {
+        //get the customer from the database
+        Customer customer = customerService.getCustomer(id);
+
+        //set customer to model attribute
+        model.addAttribute("customer" , customer);
+        System.out.println(customer);
+        //send it over the form
+        return "addCustomer";
     }
 }

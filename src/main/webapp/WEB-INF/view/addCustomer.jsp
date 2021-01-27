@@ -22,6 +22,7 @@
 </head>
 <body>
     <form:form action="add" method="post" modelAttribute="customer">
+        <form:hidden path="id"/>
         <table>
             <tbody>
                 <tr>

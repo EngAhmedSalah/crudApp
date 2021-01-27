@@ -34,15 +34,23 @@
                 <th>First Name</th>
                 <th>Last Name</th>
                 <th>Email</th>
+                <th>Update</th>
+                <th>Delete</th>
             </tr>
             <!-- loop in the list -->
             <c:forEach var="tempCustomer" items="${customers}">
+                <c:url var="updateLink" value="/customer/showFormForUpdate">
+                    <c:param name="customerID" value="${tempCustomer.id}"/>
+                </c:url>
+                <c:url var="deleteLink" value="/customer/showFormForUpdate">
+                    <c:param name="customerId" value="${tempCustomer.id}"/>
+                </c:url>
                 <tr>
                     <td>${tempCustomer.firstName}</td>
                     <td>${tempCustomer.lastName}</td>
                     <td>${tempCustomer.email}</td>
-                    <td><a href="" class="btn btn-warning">Update</a></td>
-                    <td><a href="/customer/delete" class="btn btn-danger" >Delete</a></td>
+                    <td><a href="${updateLink}" class="btn btn-warning">Update</a></td>
+                    <td><a href="${deleteLink}" class="btn btn-danger" >Delete</a></td>
                 </tr>
             </c:forEach>
         </table>
