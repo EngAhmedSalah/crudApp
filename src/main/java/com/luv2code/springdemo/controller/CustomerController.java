@@ -3,9 +3,11 @@ package com.luv2code.springdemo.controller;
 
 import java.util.List;
 
+import com.luv2code.springdemo.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,14 +22,14 @@ import java.util.List;
 public class CustomerController
 {
     @Autowired
-    private CustomerDAO customerDAO;
+    private CustomerService customerService;
 
-    @RequestMapping("/list")
+    @GetMapping("/list")
     public String listCustomers(Model theModel)
     {
 
         // get customers from the dao
-        List<Customer> theCustomers = customerDAO.getCustomers();
+        List<Customer> theCustomers = customerService.getCustomers();
 
         // add the customers to the model
         theModel.addAttribute("customers", theCustomers);
@@ -44,7 +46,13 @@ public class CustomerController
     @PostMapping("/add")
     public String addCustomer(@ModelAttribute("customer") Customer customer)
     {
-        customerDAO.addCustomer(customer);
+        customerService.addCustomer(customer);
+        return "redirect:/customer/list";
+    }
+    @PostMapping("/delete")
+    public String deleteCustomer(@ModelAttribute("customer") Customer customer)
+    {
+        customerService.deleteCustomer(customer);
         return "redirect:/customer/list";
     }
 }

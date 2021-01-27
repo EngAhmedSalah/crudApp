@@ -1,14 +1,13 @@
-package com.luv2code.springdemo.dao;
+package com.luv2code.springdemo.service;
 
 import com.luv2code.springdemo.entity.Customer;
-import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.ModelAttribute;
 
 import java.util.List;
 
-public interface CustomerDAO
+public interface CustomerService
 {
     public List<Customer> getCustomers();
     public void addCustomer(Customer customer);
-    public void updateCustomer(Customer customer);
     public void deleteCustomer(Customer customer);
 }

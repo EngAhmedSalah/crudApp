@@ -10,15 +10,17 @@
 <html>
 <head>
     <title>Title</title>
-        <%--    include bootstrap 5 css--%>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
-<%--    include css file--%>
-    <link href="<c:url value="/resources/css/style.css" />" rel="stylesheet">
-
+    <%--    include bootstrap 5 css--%>
+    <link href="<c:url value="/resources/css/bootstrap.css" />" rel="stylesheet">
+    <link href="<c:url value="/resources/css/bootstrap-grid.css" />" rel="stylesheet">
+    <link href="<c:url value="/resources/css/bootstrap-reboot.css" />" rel="stylesheet">
+    <link href="<c:url value="/resources/css/bootstrap-utilities.css" />" rel="stylesheet">
+    <%--    include css file--%>
+    <style><%@include file="../../resources/css/style.css"%></style>
 </head>
 <body>
-<h1 class="test">List Customer will be added soon</h1>
-<a href="/customer/showForm" class="btn btn-primary m-4" >Add Customer</a>
+<h1 class="test">List of Customer of Our Company</h1>
+<a href="${pageContext.request.contextPath}/customer/showForm" class="btn btn-primary m-4" >Add Customer</a>
 <div class="wrapper">
     <div class="header">
         <h1>CRM Table</h1>
@@ -39,6 +41,8 @@
                     <td>${tempCustomer.firstName}</td>
                     <td>${tempCustomer.lastName}</td>
                     <td>${tempCustomer.email}</td>
+                    <td><a href="" class="btn btn-warning">Update</a></td>
+                    <td><a href="/customer/delete" class="btn btn-danger" >Delete</a></td>
                 </tr>
             </c:forEach>
         </table>
