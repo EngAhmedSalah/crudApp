@@ -23,9 +23,38 @@ public class CustomerDAOImpl implements CustomerDAO
         Session currentSession = sessionFactory.getCurrentSession();
 
         //is a query sorted by email
-        Query<Customer> theQuery =
-                currentSession.createQuery("from Customer order by email", Customer.class);
+        Query<Customer> theQuery = currentSession.createQuery("from Customer order by email", Customer.class);
         List<Customer> customers = theQuery.list();
+        return customers;
+    }
+
+    @Override
+    public List<Customer> getSearchCustomers(String theSearchName)
+    {
+        // get the current hibernate session
+        Session currentSession = sessionFactory.getCurrentSession();
+
+        Query theQuery = null;
+
+        // only search by name if theSearchName is not empty
+        if (theSearchName != null && theSearchName.trim().length() > 0)
+        {
+            // search for firstName or lastName ... case insensitive
+            //theQuery = currentSession.createQuery("from Customer where lower(firstName) like :theName or lower(lastName) like :theName", Customer.class);
+            theQuery = currentSession.createQuery("from Customer where firstName=:theName", Customer.class);
+            theQuery.setParameter("theName", theSearchName.toLowerCase());
+
+        }
+        else
+        {
+            // theSearchName is empty ... so just get all customers
+            theQuery = currentSession.createQuery("from Customer", Customer.class);
+        }
+
+        // execute query and get result list
+        List<Customer> customers = theQuery.getResultList();
+
+        // return the results
         return customers;
     }
 
@@ -33,7 +62,7 @@ public class CustomerDAOImpl implements CustomerDAO
     public Customer getCustomer(int id)
     {
         Session currentSession = sessionFactory.getCurrentSession();
-        return currentSession.get(Customer.class , id);
+        return currentSession.get(Customer.class, id);
     }
 
     @Override
@@ -44,12 +73,6 @@ public class CustomerDAOImpl implements CustomerDAO
         currentSession.saveOrUpdate(customer);
     }
 
-    @Override
-    public void updateCustomer(Customer customer)
-    {
-        Session currentSession = sessionFactory.getCurrentSession();
-        //Query<Customer> query = currentSession.createQuery("update customer set first_name=:a , last_name=:b , email=:c where id=:d");
-    }
 
     @Override
     @Transactional

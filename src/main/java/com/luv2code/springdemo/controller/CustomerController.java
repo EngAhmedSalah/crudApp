@@ -46,12 +46,6 @@ public class CustomerController
         customerService.addCustomer(customer);
         return "redirect:/customer/list";
     }
-    @PostMapping("/delete")
-    public String deleteCustomer(@ModelAttribute("customer") Customer customer)
-    {
-        customerService.deleteCustomer(customer);
-        return "redirect:/customer/list";
-    }
     @GetMapping("/showFormForUpdate")
     public String showFormForUpdate(@RequestParam("customerID") int id ,  Model model)
     {
@@ -60,8 +54,25 @@ public class CustomerController
 
         //set customer to model attribute
         model.addAttribute("customer" , customer);
-        System.out.println(customer);
         //send it over the form
         return "addCustomer";
+    }
+    @GetMapping("/delete")
+    public String deleteCustomer(@RequestParam("customerID") int id)
+    {
+        Customer customer = customerService.getCustomer(id);
+        customerService.deleteCustomer(customer);
+        return "redirect:/customer/list";
+    }
+    @RequestMapping("/search")
+    public String searchCustomer(@RequestParam("theSearchName") String searchKey , Model model)
+    {
+        List<Customer> customers = customerService.getSearchCustomers(searchKey);
+        for (Customer l:customers)
+        {
+            System.out.println(l);
+        }
+        model.addAttribute("customers" , customers);
+        return "list-customers";
     }
 }
