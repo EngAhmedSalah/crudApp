@@ -11,4 +11,10 @@ public class HomeController
     {
         return "index";
     }
+
+    @RequestMapping("/showMyLoginPage")
+    public String showForm()
+    {
+        return "fancy-form";
+    }
 }

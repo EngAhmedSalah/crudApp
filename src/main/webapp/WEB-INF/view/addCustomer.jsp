@@ -34,7 +34,7 @@
                     <td><form:input cssClass="form-control" path="lastName"/></td>
                 </tr>
                 <tr>
-                    <td><label>Last Name</label></td>
+                    <td><label>Email</label></td>
                     <td><form:input cssClass="form-control" path="email"/></td>
                 </tr>
                 <tr>

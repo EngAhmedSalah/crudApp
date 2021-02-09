@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%--
   Created by IntelliJ IDEA.
   User: ahmed
@@ -19,6 +20,9 @@
 <body>
 <h1>Welcome Page</h1>
 <a class="m-4 btn btn-primary" href="/customer/list">List Customers</a>
-<a class="m-4 btn btn-danger" href="/customer/showForm">Add Customers</a>
+<a class="m-4 btn btn-secondary" href="/customer/showForm">Add Customers</a>
+<form:form method="post" action="/logout">
+    <input class="m-4 btn btn-danger" value="Logout" type="submit"/>
+</form:form>
 </body>
 </html>
