@@ -1,5 +1,5 @@
 # CRUD App
-simple CRUD app using spring MVC , Hibernate , mysql container with docker , Maven and Bootstrap4
+simple CRUD app using spring MVC ,spring MVC ,  Hibernate , mysql container with docker , Maven and Bootstrap4
 
 |  | Used Tools |  |
 | :---         |     :---:      |          ---: |
