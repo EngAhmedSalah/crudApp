@@ -75,4 +75,19 @@ public class CustomerController
         model.addAttribute("customers" , customers);
         return "list-customers";
     }
+    @RequestMapping("/leader")
+    public String showLeader()
+    {
+        return "leaders";
+    }
+    @RequestMapping("/system")
+    public String showSystem()
+    {
+        return "system";
+    }
+    @RequestMapping("/accessDenied")
+    public String showAccessDeniedPage()
+    {
+        return "accessDenied";
+    }
 }
