@@ -189,7 +189,7 @@
 </div>
 <h1 class="errorcode">ERROR 403</h1>
 <div class="errortext">This area is forbidden. Turn back now!</div>
-<a href="/" class="btn btn-danger">Back</a>
+<a href="${pageContext.request.contextPath}/" class="btn btn-danger">Back</a>
 
 </body>
 </html>

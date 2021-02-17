@@ -23,12 +23,12 @@
 <h1>User: <security:authentication property="principal.username"/></h1>
 <h6>with role: <security:authentication property="principal.authorities"/></h6>
 <security:authorize access="hasRole('Manager')">
-    <a class="m-4 btn btn-primary" href="/customer/list">List Customers</a>
-    <a class="m-4 btn btn-secondary" href="/customer/showForm">Add Customers</a>
+    <a class="m-4 btn btn-primary" href="${pageContext.request.contextPath}/customer/list">List Customers</a>
+    <a class="m-4 btn btn-secondary" href="${pageContext.request.contextPath}/customer/showForm">Add Customers</a>
 </security:authorize>
-<a class="m-4 btn btn-warning" href="/customer/leader">Show leaders</a>
-<a class="m-4 btn btn-dark" href="/customer/system">Show System</a>
-<form:form method="post" action="/logout">
+<a class="m-4 btn btn-warning" href="${pageContext.request.contextPath}/customer/leader">Show leaders</a>
+<a class="m-4 btn btn-dark" href="${pageContext.request.contextPath}/customer/system">Show System</a>
+<form:form method="post" action="logout">
     <input class="m-4 btn btn-danger" value="Logout" type="submit"/>
 </form:form>
 </body>
