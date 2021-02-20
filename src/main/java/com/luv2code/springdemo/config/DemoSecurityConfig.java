@@ -1,26 +1,27 @@
 package com.luv2code.springdemo.config;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
+import javax.sql.DataSource;
+
 @Configuration
 @EnableWebSecurity
 public class DemoSecurityConfig extends WebSecurityConfigurerAdapter
 {
 
+    @Autowired
+    private DataSource myDatasource;
+
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception
     {
 
-        auth.inMemoryAuthentication()
-                .withUser("user").password("root").roles("Employer")
-                .and()
-                .withUser("admin").password("root").roles("Admin" , "Employer")
-                .and()
-                .withUser("ahmed").password("root").roles("Manager" , "Admin" , "Employer");
+        auth.jdbcAuthentication().dataSource(myDatasource);
     }
 
     @Override
@@ -29,9 +30,9 @@ public class DemoSecurityConfig extends WebSecurityConfigurerAdapter
 
         http.authorizeRequests()
 //                .anyRequest().authenticated()
-                .antMatchers("/").hasRole("Employer")
-                .antMatchers("/customer/leader/**").hasRole("Manager")
-                .antMatchers("/customer/system/**").hasRole("Admin")
+                .antMatchers("/").hasRole("EMPLOYER")
+                .antMatchers("/customer/leader/**").hasRole("MANAGER")
+                .antMatchers("/customer/system/**").hasRole("ADMIN")
                 .and()
                 .formLogin()
                 .loginPage("/showMyLoginPage")
