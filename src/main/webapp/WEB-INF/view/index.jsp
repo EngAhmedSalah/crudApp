@@ -22,7 +22,7 @@
 <h1>Welcome Page</h1>
 <h1>User: <security:authentication property="principal.username"/></h1>
 <h6>with role: <security:authentication property="principal.authorities"/></h6>
-<security:authorize access="hasRole('Manager')">
+<security:authorize access="hasRole('MANAGER')">
     <a class="m-4 btn btn-primary" href="${pageContext.request.contextPath}/customer/list">List Customers</a>
     <a class="m-4 btn btn-secondary" href="${pageContext.request.contextPath}/customer/showForm">Add Customers</a>
 </security:authorize>

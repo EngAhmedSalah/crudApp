@@ -30,7 +30,7 @@ public class DemoSecurityConfig extends WebSecurityConfigurerAdapter
 
         http.authorizeRequests()
 //                .anyRequest().authenticated()
-                .antMatchers("/").hasRole("EMPLOYER")
+                .antMatchers("/").hasRole("EMPLOYEE")
                 .antMatchers("/customer/leader/**").hasRole("MANAGER")
                 .antMatchers("/customer/system/**").hasRole("ADMIN")
                 .and()
