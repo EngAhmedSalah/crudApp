@@ -12,19 +12,20 @@ import org.springframework.transaction.annotation.Transactional;
 import com.luv2code.springdemo.entity.Customer;
 
 @Repository
+@Transactional
 public class CustomerDAOImpl implements CustomerDAO
 {
     @Autowired
     private SessionFactory sessionFactory;
 
     @Override
-    public List<Customer> getCustomers()
+    public List getCustomers()
     {
         Session currentSession = sessionFactory.getCurrentSession();
 
         //is a query sorted by email
-        Query<Customer> theQuery = currentSession.createQuery("from Customer order by email", Customer.class);
-        List<Customer> customers = theQuery.list();
+        Query theQuery = currentSession.createQuery("from Customer");
+        List customers = theQuery.getResultList();
         return customers;
     }
 
@@ -66,7 +67,7 @@ public class CustomerDAOImpl implements CustomerDAO
     }
 
     @Override
-    @Transactional
+
     public void addCustomer(Customer customer)
     {
         Session currentSession = sessionFactory.getCurrentSession();
