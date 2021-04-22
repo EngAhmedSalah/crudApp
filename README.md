@@ -9,3 +9,12 @@ simple CRUD app using spring MVC ,spring MVC ,  Hibernate , mysql container with
 
 
 you can clone the repository for the project code template or for the full source code
+
+## Getting Started
+* Clone the repository
+* setup docker
+* pull mysql container by run this command on linux :`docker container run -d --name database -p 3307:3306 -e MYSQL_ROOT_PASSWORD=root mysql:latest`
+* setup your local server (tomcat , glassfish ...etc)
+* run the application
+* from your browser open the following link : localhost:port
+#### for example `localhost:8080`
